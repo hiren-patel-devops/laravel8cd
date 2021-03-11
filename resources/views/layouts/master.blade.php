@@ -55,7 +55,7 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Website - Home</p>
+                <p class="masthead-subheading font-weight-light mb-0">Website1 - Home</p>
             </div>
         </header>
 
@@ -86,7 +86,7 @@
                     <div class="col-lg-4">
                         <h4 class="text-uppercase mb-4">About Freelancer</h4>
                         <p class="lead mb-0">
-                            Freelance is a free to use, MIT licensed Bootstrap theme created by
+                            Freelance is a free to use, MIT23422 mdnw kdqwkd  wdqw d licencd e  qwd  kndw d idqw dwj jnwdw kjqwdwjd ndw qd nnkjndwqd jdnwKND NDQWDL DQWDP IDJODW; ojodQD KDJQ; OIDQPD[ OJDP	Q  licensed Bootstrap theme created by
                             <a href="http://startbootstrap.com">Start Bootstrap</a>
                             .
                         </p>

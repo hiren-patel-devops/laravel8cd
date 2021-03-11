@@ -64,7 +64,8 @@ pipeline {
         }
         stage("Deploy to staging") {
             steps {
-                sh "sudo docker run -d --rm -p 80:80 --name laravel8cd ${DOCKER_HUB_USERNAME}/${DOCKER_REPOSITORY}:${BUILD_NUMBER} "
+                sh 'docker stop laravel8cd'
+                sh "sudo docker run -d --rm -p 80:80 --name laravel8cd ab123cb/laravel:${BUILD_NUMBER} "
             }
         }
         stage("Acceptance test curl") {
