@@ -59,7 +59,7 @@ pipeline {
             }
             steps {
                 sh "sudo docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
-                sh "sudo docker push ${DOCKER_HUB_USERNAME}/${DOCKER_REPOSITORY}:${BUILD_NUMBER}"
+                sh "sudo docker push ab123cb/laravel:${BUILD_NUMBER}"
             }
         }
         stage("Deploy to staging") {
