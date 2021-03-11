@@ -45,12 +45,13 @@ pipeline {
         stage("Docker build") {
             environment {
                 DOCKER_HUB_USERNAME = credentials("docker-hub-user")
-                DOCKER_REPOSITORY = credentials("docker-reposirory")   
+                DOCKER_REPOSITORY = credentials("docker-reposirory")
+                }   
             steps {
                 sh "docker build -t ${DOCKER_HUB_USERNAME}/${DOCKER_REPOSITORY}:${BUILD_NUMBER} ."
             }
         }
-        }
+        
         stage("Docker push") {
             environment {
                 DOCKER_USERNAME = credentials("docker-user")
