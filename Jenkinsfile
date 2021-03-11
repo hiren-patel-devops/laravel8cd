@@ -58,7 +58,7 @@ pipeline {
             }
             steps {
                 sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
-                sh "docker push danielgara/laravel8cd"
+                sh "docker push ${DOCKER_HUB_USERNAME}/{DOCKER_REPOSITORY}:${BUILD_NUMBER}"
             }
         }
         stage("Deploy to staging") {
