@@ -47,7 +47,7 @@ pipeline {
                 DOCKER_HUB_USERNAME = credentials("docker-hub-user")
                 DOCKER_REPOSITORY = credentials("docker-reposirory")   
             steps {
-                sh "docker build -t ${DOCKER_HUB_USERNAME}/{DOCKER_REPOSITORY}:${BUILD_NUMBER} ."
+                sh "docker build -t ${DOCKER_HUB_USERNAME}/${DOCKER_REPOSITORY}:${BUILD_NUMBER} ."
             }
         }
         }
@@ -58,12 +58,12 @@ pipeline {
             }
             steps {
                 sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
-                sh "docker push ${DOCKER_HUB_USERNAME}/{DOCKER_REPOSITORY}:${BUILD_NUMBER}"
+                sh "docker push ${DOCKER_HUB_USERNAME}/${DOCKER_REPOSITORY}:${BUILD_NUMBER}"
             }
         }
         stage("Deploy to staging") {
             steps {
-                sh "docker run -d --rm -p 80:80 --name laravel8cd ${DOCKER_HUB_USERNAME}/{DOCKER_REPOSITORY}:${BUILD_NUMBER} "
+                sh "docker run -d --rm -p 80:80 --name laravel8cd ${DOCKER_HUB_USERNAME}/${DOCKER_REPOSITORY}:${BUILD_NUMBER} "
             }
         }
         stage("Acceptance test curl") {
