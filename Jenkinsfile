@@ -43,9 +43,13 @@ pipeline {
             }
         }
         stage("Docker build") {
+            environment {
+                DOCKER_HUB_USERNAME = credentials("docker-hub-user")
+                DOCKER_REPOSITORY = credentials("docker-reposirory")   
             steps {
-                sh "docker build -t danielgara/laravel8cd ."
+                sh "docker build -t ${DOCKER_HUB_USERNAME}/{DOCKER_REPOSITORY}:${BUILD_NUMBER} ."
             }
+        }
         }
         stage("Docker push") {
             environment {
@@ -59,7 +63,7 @@ pipeline {
         }
         stage("Deploy to staging") {
             steps {
-                sh "docker run -d --rm -p 80:80 --name laravel8cd danielgara/laravel8cd"
+                sh "docker run -d --rm -p 80:80 --name laravel8cd ${DOCKER_HUB_USERNAME}/{DOCKER_REPOSITORY}:${BUILD_NUMBER} "
             }
         }
         stage("Acceptance test curl") {
@@ -68,15 +72,6 @@ pipeline {
                 sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
             }
         }
-        stage("Acceptance test codeception") {
-            steps {
-                sh "vendor/bin/codecept run"
-            }
-            post {
-                always {
-                    sh "docker stop laravel8cd"
-                }
-            }
-        }
+        
     }
 }
