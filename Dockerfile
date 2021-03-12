@@ -11,7 +11,8 @@ RUN composer install \
     --no-plugins \
     --no-scripts \
     --prefer-dist
-
+RUN rm -rf /etc/apache2/sites-available/000-default.conf
+COPY custom.conf /etc/apache2/sites-available/000-default.conf
 RUN php artisan key:generate
 RUN php artisan migrate
 RUN chmod -R 777 storage
